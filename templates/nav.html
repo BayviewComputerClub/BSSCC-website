@@ -1,0 +1,408 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300..600');
+    nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 100%;
+        width: 100%;
+    }
+    #id_nav_img {
+        position: fixed;
+        top: 0;
+        left: 0;
+        max-width: 100%;
+        z-index: -1;
+    }
+    #id_img_spacer {
+        height: 65%;
+    }
+    #id_logo_spacer {
+        height: 7%;
+    }
+    #id_logo_box {
+        height: 20%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    @keyframes slideInFromLeft {
+        0% { left: -120vw; }
+        90% { left: 5vw; }
+        100% { left: 0vw; }
+    }
+    #id_logo_content{
+        left: 0vw;
+        display: flex;
+        justify-content: left;
+        position: relative;
+        width: 85%;
+    }
+    .display-logo-content{
+        animation: slideInFromLeft 1s forwards;
+    }
+    .remove-logo-content{
+        animation: slideInFromLeft 1s forwards;
+        animation-direction: reverse;
+    }
+    @keyframes fadeInRound {
+        0%{
+            opacity: 1;
+            border-radius: 15%;
+        }
+        100%{
+            opacity: 1;
+            border-radius: 50%;
+        }
+    }
+    #id_logo_img{
+        border-radius: 15%;
+        height: 100%;
+        animation: fadeInRound 1s forwards;
+        animation-delay: 1s;
+        margin-right: 30px;
+    }
+    #id_logo_text_box{
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 50% 10% 30% 10%;
+    }
+    .logo-text {
+        margin: 0;
+        font-family: "Sora", sans-serif;
+        font-variation-settings: 'wght' 300;
+    }
+    @keyframes BCCtoBSSCC {
+        from {
+            color: var(--aurora_yellow);
+            font-variation-settings: 'wght' 300;
+        }
+        to {
+            color: var(--nord3);
+            font-variation-settings: 'wght' 600;
+        }
+    }
+    .bcc-to-bsscc {
+        animation: BCCtoBSSCC 1.5s forwards;
+    }
+    .bcc {
+        white-space: nowrap;
+        color: var(--aurora_yellow);
+    }
+    #id_bss {
+        padding-left: 3px;
+        color: var(--snow_bright);
+    }
+    #id_nav_elements {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        background-color: var(--nord1);
+        height: 12%;
+    }
+    #id_left_bar_container {
+        display: flex;
+        justify-content: left;
+        padding: 10px;
+    }
+    #id_right_bar_container {
+        display: flex;
+        justify-content: right;
+    }
+    .sticky {
+        border-style: solid;
+        border-color: purple;
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+    #id_nav_logo{
+        position: relative;
+        margin-left: 17px;
+        margin-top: 6px;
+        margin-bottom: 7px;
+        visibility: hidden;
+    }
+    @keyframes navLogo {
+        from { top: 10vw; }
+        to { top: 0; }
+    }
+    .display-logo{
+        visibility: visible !important;
+        animation: navLogo 1.5s;
+    }
+    #id_bsscc {
+        white-space: nowrap;
+        overflow: hidden;
+        color: var(--nord3);
+        margin: 0;
+        font-family: "Sora", sans-serif;
+        font-variation-settings: 'wght' 600;
+        margin-left: 20px;
+        margin-top: 2px;
+        visibility: hidden;
+    }
+    #id_bsscc:hover{
+        color: #FF81C6;
+    }
+    .nav-element {
+        padding: 20px;
+        border-style: solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .nav-element-container{
+        display: grid;
+        grid-template-rows: 5% 95%;
+        grid-template-columns: 150px;
+    }
+    .nav-element-overline{
+    }
+    .t1 {
+        background-color: var(--aurora_orange);
+    }
+    .t2 {
+        background-color: var(--aurora_red);
+    }
+    .nav-element-outer {
+        background-color: var(--nord2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 25px;
+    }
+    .nav-element-inner {
+        z-index: 100;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 0;
+        padding-right: 0;
+        transition: padding-bottom 2s, padding-left 2s, padding-right 2s, padding-top 2s, background-color 2s;
+    }
+    :root{
+        --nav-pad-size: 30px;
+    }
+    .t1 + .nav-element-outer > .nav-element-inner:hover {
+        background-color: var(--aurora_orange);
+    }
+    .t2 + .nav-element-outer > .nav-element-inner:hover {
+        /*background-color: var(--aurora_red);*/
+    }
+    .nav-element-inner:hover {
+        padding-top: var(--nav-pad-size);
+        padding-bottom: var(--nav-pad-size);
+        padding-left: calc(var(--nav-pad-size) * 1.3);
+        padding-right: calc(var(--nav-pad-size) * 1.3);
+        transition: padding-bottom 0.5s, padding-left 0.5s, padding-right 0.5s, padding-top 0.5s, background-color 0.5s;
+    }
+    .nav-element-text-spacer {
+        height: 12px;
+    }
+    .nav-element-underline {
+        border-radius: 1.5px;
+        margin-top: 7px;
+        width: 0px;
+        height: 3px;
+        background-color: var(--snow_bright);
+        transition: width 1s;
+    }
+    .nav-element-inner:hover > .nav-element-underline {
+        width: calc(var(--nav-pad-size)*3);
+        transition: width 1s;
+    }
+    .nav-element-text {
+        margin: 0;
+        color: var(--snow_dark);
+        font-family: "Sora", sans-serif;
+        font-variation-settings: 'wght' 400;
+        font-size: 20px;
+        line-height: 20px;
+        transition: transform 2s;
+        display: inline;
+    }
+    .nav-element-text:hover {
+        cursor: pointer;
+    }
+    .nav-element-inner:hover > .nav-element-text {
+        transform: scale(1.3,1.3) translateY(-5px);
+        transition: transform 1s;
+    }
+</style>
+<nav>
+    <img id="id_nav_img">
+    <div id="id_logo_box">
+        <div id="id_logo_content" class="display-logo-content">
+            <img id="id_logo_img" src="data:image/png;base64,{% include "static/logo.txt" %}">
+            <div id="id_logo_text_box">
+                <p id="id_bcc" class="bcc auto-height logo-text">Bayview Computer Club</p>
+                <p class="text_spacer"></p>
+                <p id="id_bss" class="auto-height logo-text">Bayview Secondary School</p>
+                <p class="text_spacer"></p>
+            </div>
+        </div>
+    </div>
+    <div id="id_logo_spacer"></div>
+    <div id="id_nav_elements">
+        <div id="id_left_bar_container">
+            <img id="id_nav_logo" src="data:image/png;base64,{% include "static/logo-trans.txt" %}">
+            <p id="id_bsscc" class="auto-height nav-text">B</p>
+        </div>
+        <div id="id_right_bar_container">
+            <div class="nav-element-container">
+                <div class="nav-element-overline t1"></div>
+                <div class="nav-element-outer">
+                    <div class="nav-element-inner">
+                        <div class="nav-element-text-spacer"></div>
+                        <p class="nav-element-text">
+                            <span>g </span>
+                            <span>Google</span>
+                        </p>
+                        <div class="nav-element-underline"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-element-container">
+                <div class="nav-element-overline t2"></div>
+                <div class="nav-element-outer">
+                    <div class="nav-element-inner">
+                        <div class="nav-element-text-spacer"></div>
+                        <p class="nav-element-text">Youtube</p>
+                        <div class="nav-element-underline"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    let stickyTrigger = $('#id_nav_elements').offset().top;
+    let isSticky = false;
+    let animationTrigger = $('#id_bcc').offset().top-300;
+    console.log(animationTrigger, stickyTrigger)
+    let isAnimated = false;
+    let animating = false;
+    let firstTime = true;
+    let cloneExists = false;
+    let shrinking = false;
+    let slidingTime = 1000;
+    let movingTime = 1500;
+    let shrinkTime = 1500;
+    let expandTime = 2500;
+    let moveStart = -1;
+    $(window).scroll(function onScroll() {
+        if (window.pageYOffset >= stickyTrigger && !isSticky){
+            $('#id_nav_elements').addClass('sticky');
+            isSticky = true;
+            if(cloneExists){
+                $('#id_bcc_clone').stop()
+                .css({
+                    position: 'fixed',
+                    left: $('#id_bcc_clone').get(0).getBoundingClientRect().x,
+                    top: $('#id_bcc_clone').get(0).getBoundingClientRect().y,
+                })
+                .animate({
+                    'left': $('#id_bsscc').get(0).getBoundingClientRect().x,
+                    'top': $('#id_bsscc').get(0).getBoundingClientRect().y,
+                    'font-size': $('#id_bsscc').css('font-size'),
+                    'line-height': $('#id_bsscc').css('line-height'),
+                }, Math.max(0,movingTime-(Date.now()-moveStart)));
+            }
+        } else if(window.pageYOffset < stickyTrigger && isSticky){
+            $('#id_nav_elements').removeClass('sticky');
+            isSticky = false;
+            if(cloneExists){
+                $('#id_bcc_clone').stop()
+                .css({
+                    position: 'absolute',
+                    left: $('#id_bcc_clone').offset().left,
+                    top: $('#id_bcc_clone').offset().top,
+                })
+                .animate({
+                    'left': $('#id_bsscc').offset().left,
+                    'top': $('#id_bsscc').offset().top,
+                    'font-size': $('#id_bsscc').css('font-size'),
+                    'line-height': $('#id_bsscc').css('line-height'),
+                }, Math.max(0,movingTime-(Date.now()-moveStart)));
+            }
+        }
+        if(!animating) {
+            if (window.pageYOffset >= animationTrigger && !isAnimated) {
+                if(firstTime){
+                    firstTime = false;
+                    $('#id_nav_logo').addClass('display-logo')
+                    $('#id_bcc').clone()
+                    .attr('id','id_bcc_clone')
+                    .appendTo($('body'))
+                    .css({
+                        position: 'absolute',
+                        'z-index': 1000,
+                        overflow: 'hidden',
+                        'padding-bottom': 30,
+                    })
+                    .offset($('#id_bcc').offset())
+                    .animate({
+                        'left': $('#id_bsscc').offset().left,
+                        'top': $('#id_bsscc').offset().top,
+                        'font-size': $('#id_bsscc').css('font-size'),
+                        'line-height': $('#id_bsscc').css('line-height'),
+                    }, movingTime)
+                    .addClass('bcc-to-bsscc')
+                    .outerHeight();
+                    cloneExists = true;
+                    moveStart = Date.now();
+                    setTimeout(() => {cloneExists = false}, movingTime+shrinkTime);
+                    $('#id_bcc').css('visibility', 'hidden');
+                    setTimeout(() => $('#id_bcc').css('visibility', 'visible'), slidingTime);
+                    setTimeout(() => {
+                        //$('#id_bcc_clone').animate({width: $('#id_bsscc').width()}, shrinkTime);
+                        $('#id_bcc_clone').get(0).animate([
+                            {width: $('#id_bcc_clone').width()+'px'},
+                            {width: $('#id_bsscc').width()+'px'},
+                        ], {
+                            duration: shrinkTime
+                        })
+                        setTimeout(() => {
+                            $('#id_bcc_clone').remove();
+                            let widthInitial = $('#id_bsscc').width();
+                            let widthFinal = $('#id_bsscc').css('visibility', 'visible').text('BSSCC').width();
+                            $('#id_bsscc')
+                            .css('width', widthInitial)
+                            .animate({width: widthFinal}, expandTime);
+                        }, shrinkTime);
+                    }, movingTime);
+                }
+                $('#id_logo_content').removeClass('display-logo-content').outerHeight();
+                $('#id_logo_content').addClass('remove-logo-content').outerHeight();
+                isAnimated = true;
+                animating = true;
+                setTimeout(() => {animating = false}, slidingTime);
+            } else if(window.pageYOffset < animationTrigger && isAnimated){
+                $('#id_logo_content').removeClass('remove-logo-content').outerHeight();
+                $('#id_logo_content').addClass('display-logo-content').outerHeight();
+                isAnimated = false;
+                animating = true;
+                setTimeout(() => {animating = false}, slidingTime);
+            }
+        } else {
+            setTimeout(onScroll, 100);
+        }
+    })
+    document.querySelectorAll('.auto-height').forEach(item => {
+        let h = item.offsetHeight
+        $(item).css({
+            'font-size': h+'px',
+            'line-height': h+'px',
+        });
+    });
+    function changeHeaderImg(src){
+        $('#id_nav_img').attr('src', src);
+    }
+    changeHeaderImg('https://cdn.shopify.com/s/files/1/0043/8471/8938/products/158578486647410644_519b88b8-9440-49e7-a3ca-b56738a788e5.png?v=1589475823');
+</script>
