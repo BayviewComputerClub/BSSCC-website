@@ -6,6 +6,7 @@ def make_models(apps, schema_editor):
     vp = ExecRole(name='Vice President', color='#A652BB').save()
     genExec = ExecRole(name='General Executive', color='#00D166').save()
     compExec = ExecRole(name='Competitive Executive', color='#0099E1').save()
+    catBoyEnMing = ExecRole(name='Cat Boy En Ming', color='#FF1694')
 
     Exec = apps.get_model('website', 'Exec')
     bsscc = Exec(name='Bayview Computer Club Executive Team')
